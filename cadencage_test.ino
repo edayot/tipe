@@ -9,11 +9,15 @@ void setup()
   
   Serial.begin(9600);
   Serial.print("Start");
+  pinMode(0, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
   pinMode(13, OUTPUT);
-  pinMode(12, INPUT);
   Serial.print(millis());
   Serial.print("\n");
   Serial.print("\n");
+  
   // put your setup code here, to run once:
 
 }
@@ -27,16 +31,15 @@ void loop()
   if (d>1000/f) // pour avoir le résultat en Hz
   {
     T =millis();
-    Serial.print(analogRead(A1));
-    Serial.print(" ");
-    Serial.print(millis());
-    Serial.print(" ");
-    Serial.print(d);
-    Serial.print("\n");
+    Serial.print("1 Hz");
+    digitalWrite(0,HIGH);
+    digitalWrite(1,LOW);
+    digitalWrite(2,LOW);
+    digitalWrite(3,HIGH);
     }
  
   
-  float f2 = 0.3;
+  float f2 = 1.0;
   d = millis()-T2;
   if (d>1000/f2) // pour avoir le résultat en Hz
   {
