@@ -2,42 +2,54 @@
 
 #include "Arduino.h"
 
-long t = -3000;
+long t = 0;
+bool c=true;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(2000000);
   Serial.print("Start");
   pinMode(13, OUTPUT);
   pinMode(12, INPUT);
   Serial.print("\n");
   Serial.print("\n");
   digitalWrite(13,LOW);
-
+  Serial.print("time_(μs) raw_current \n");
 }
 
 void loop() {
+  float m=micros();
+  
+  
+  float value=analogRead(A0);
+  Serial.print(m);
+  Serial.print(" ");
+  Serial.print(value-512);
+  Serial.print("\n");
+  
   bool Bouton=digitalRead(12);
-  
-  
   if (Bouton == 1)
   {
-    t=millis();
+    t=micros();
+    c=true;
   }
-  long m=millis();
-  if (1000<m-t and m-t<3000)
+  
+  if (1000000<m-t and m-t<3000000)
   {
     digitalWrite(13,HIGH);
     
+    }
+  else if (m-t>4000000 and c){
+    Serial.print("END");
+    Serial.print("\n");
+    digitalWrite(13,LOW);
+    c=false;
     }
   else
   {
     digitalWrite(13,LOW);
     
     }
-  long value=analogRead(A0);
-  Serial.print(value);
-  Serial.print("\n");
-  delay(100);
+  
   // put your main code here, to run repeatedly:
 
 }
