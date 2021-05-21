@@ -13,17 +13,20 @@ void setup() {
   Serial.print("\n");
   Serial.print("\n");
   digitalWrite(13,LOW);
-  Serial.print("time_(μs) raw_current \n");
+  Serial.print("time_(μs) raw_current raw_low_voltage\n");
 }
 
 void loop() {
   float m=micros();
   
   
-  float value=analogRead(A0);
+  float current=analogRead(A0);
+  float voltage=analogRead(A1);
   Serial.print(m);
   Serial.print(" ");
-  Serial.print(value-512);
+  Serial.print(current-511);
+  Serial.print(" ");
+  Serial.print(voltage);
   Serial.print("\n");
   
   bool Bouton=digitalRead(12);
