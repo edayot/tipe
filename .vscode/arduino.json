@@ -1,4 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "commande_moteur.ino"
+    "sketch": "commande_moteur.ino",
+    "port": "COM4"
 }

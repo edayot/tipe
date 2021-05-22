@@ -24,7 +24,7 @@ void loop() {
   float voltage=analogRead(A1);
   Serial.print(m);
   Serial.print(" ");
-  Serial.print(current-511);
+  Serial.print(current);
   Serial.print(" ");
   Serial.print(voltage);
   Serial.print("\n");
