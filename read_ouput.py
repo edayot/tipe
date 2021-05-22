@@ -22,25 +22,31 @@ for i in range(n+1,len(lines)-1):
     T.append(time)
     C.append(current)
     V.append(voltage)
-    
+
+#moyenne mobile exponentielle
 N=20
 alpha=2/(N+1)
-C_=[C[0]]
+C1=[C[0]]
 for i in C:
-    C_.append(alpha*i+(1-alpha)*C_[-1])
+    C1.append(alpha*i+(1-alpha)*C1[-1])
 
-C__=[]
+#moyenne mobile
+C2=[]
 n=10
 for i in range(n,len(C)):
     M=0
     for j in range(0,n):
         M=M+C[i-j]
-    C__.append(M/n)
+    C2.append(M/n)
+
+
 
 
 #plt.plot(T,C)
-#plt.plot(T,C_[1:])
-plt.plot(T[n:],C__)
+#plt.plot(T,C1[1:])
+#plt.plot(T[n:],C2)
+plt.plot(T,C3)
 plt.show()
+
 plt.plot(T,V)
 plt.show()
