@@ -1,7 +1,10 @@
 
 import matplotlib.pyplot as plt
 
-name=input()+".txt"
+try:
+    name=input()+".txt"
+except:
+    name="last.txt"
 lines=[]
 
 
@@ -13,9 +16,9 @@ n=lines.index("time_(μs) raw_current raw_low_voltage\n")
 T=[]
 C=[]
 V=[]
-moy=509.4300937766411
+moy=507.8126298296635
 for i in range(n+1,len(lines)-1):
-    l=lines[i][:-2].split(" ")
+    l=lines[i][:-1].split(" ")
     time=float(l[0])/1000000
     current=((float(l[1])-moy)*10/1024)*1000
     #current=float(l[1])
@@ -25,7 +28,7 @@ for i in range(n+1,len(lines)-1):
     V.append(voltage)
 
 #moyenne mobile exponentielle
-N=10
+N=5
 alpha=2/(N+1)
 C1=[C[0]]
 for i in C:
@@ -33,7 +36,7 @@ for i in C:
 
 #moyenne mobile
 C2=[]
-n=10
+n=5
 for i in range(n,len(C)):
     M=0
     for j in range(0,n):

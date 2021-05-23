@@ -4,6 +4,10 @@
 
 long t = 0;
 bool c=true;
+int i=0;
+
+bool en_marche=false;
+bool stop_=false;
 
 void setup() {
   Serial.begin(2000000);
@@ -17,41 +21,53 @@ void setup() {
 }
 
 void loop() {
-  float m=micros();
+  
+  long m=micros();
   
   
-  float current=analogRead(A0);
-  float voltage=analogRead(A1);
+  int current=analogRead(A0);
+  int voltage=analogRead(A1);
   Serial.print(m);
   Serial.print(" ");
   Serial.print(current);
   Serial.print(" ");
   Serial.print(voltage);
   Serial.print("\n");
-  
+  /*
   bool Bouton=digitalRead(12);
   if (Bouton == 1)
   {
     t=micros();
     c=true;
   }
+  */
   
-  if (1000000<m-t and m-t<3000000)
+  if (not en_marche)
   {
-    digitalWrite(13,HIGH);
+    if (not stop_ and 1000000<m)
+    {
+      digitalWrite(13,HIGH);
+      en_marche=true;
+    
+      
+      }
+    if (m>4000000 and c){
+      Serial.print("END");
+      Serial.print("\n");
+      c=false;
+    }
     
     }
-  else if (m-t>4000000 and c){
-    Serial.print("END");
-    Serial.print("\n");
-    digitalWrite(13,LOW);
-    c=false;
-    }
-  else
+    
+  if (m>3000000)
   {
     digitalWrite(13,LOW);
+    en_marche=false;
+    stop_=true;
     
     }
+  
+
   
   // put your main code here, to run repeatedly:
 
