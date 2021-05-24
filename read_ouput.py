@@ -1,13 +1,11 @@
 
 import matplotlib.pyplot as plt
-
+f.close()
 try:
     name=input()+".txt"
 except:
     name="last.txt"
 lines=[]
-
-
 with open(name) as f:
     lines=f.readlines()
 
@@ -16,7 +14,7 @@ n=lines.index("time_(μs) raw_current raw_low_voltage\n")
 T=[]
 C=[]
 V=[]
-moy=507.8126298296635
+moy=509.314
 for i in range(n+1,len(lines)-1):
     l=lines[i][:-1].split(" ")
     time=float(l[0])/1000000
@@ -44,14 +42,14 @@ for i in range(n,len(C)):
     C2.append(M/n)
 
 
-
-
 plt.plot(T,C)
+plt.xlabel("Time (s)")
+plt.ylabel("Current (mA)")
 plt.show()
-plt.plot(T,C1[1:])
+#plt.plot(T,C1[1:])
 #plt.plot(T[n:],C2)
 
-plt.show()
-
 plt.plot(T,V)
+plt.xlabel("Time (s)")
+plt.ylabel("Voltage (V)")
 plt.show()
