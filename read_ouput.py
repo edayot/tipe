@@ -1,6 +1,9 @@
 
 import matplotlib.pyplot as plt
-f.close()
+try:
+    f.close()
+except:
+    pass
 try:
     name=input()+".txt"
 except:
@@ -53,3 +56,8 @@ plt.plot(T,V)
 plt.xlabel("Time (s)")
 plt.ylabel("Voltage (V)")
 plt.show()
+
+def integr(L1,L2,T):
+    S=0
+    for i in range(1,len(T)):
+        
